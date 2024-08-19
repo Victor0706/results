@@ -1,0 +1,48 @@
+{% block title %}
+Article
+{% endblock title %}
+
+{% block content %}
+   <h1>{{ article.title }}</h1>
+
+   <hr>
+   {% if article %}
+       <table>
+           <tr>
+               <td>Название</td>
+               <td>Текст</td>
+               <td>Пользователь</td>
+               <td>Категория</td>
+               <td>Загрузка</td>
+           </tr>
+
+           <tr>
+               <td>{{ article.title }}</td>
+               <td>{{ article.text }}</td>
+               <td>{{ article.author }}</td>
+               <td>{{ article.category }}</td>
+               <td>
+                   {% if article.upload %}
+                   <p><img class="img-article-left" width="200" height="201" src="{{ article.upload.url }}"></p>
+                   {% endif %}
+               </td>
+               <td>
+                   <a href="{% url 'article_update' id=article.id %}"><u><button type="submit"
+                       class="btn btn-primary">Редактировать объявление</button> </u></a>
+               </td>
+               <td>
+                   <a href="{% url 'article_delete' id=article.id %}"><u><button type="submit"
+                       class="btn btn-primary">Удалить объявление</button> </u></a>
+               </td>
+           </tr>
+
+       </table>
+       <a href="{% url 'response_create' %}"><u><button type="submit"
+                                                               class="btn btn-primary">Добавить отклик</button> </u></a>
+       <a href="{% url 'response_list' %}"><u><button type="submit"
+                                                        class="btn btn-primary">Посмотреть отклики</button> </u></a>
+   {% else %}
+       <h2>Объявлений нет!</h2>
+   {% endif %}
+
+{% endblock content %}

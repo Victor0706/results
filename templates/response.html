@@ -1,0 +1,32 @@
+{% load my_tags %}
+
+{% block title %}
+Response
+{% endblock title %}
+
+{% block content %}
+    <h1>Отклик</h1>
+    <hr>
+   {% if response %}
+       <table>
+           <tr>
+               <td>Пользователь</td>
+               <td>Текст</td>
+               <td>Объявление</td>
+               <td>Статус</td>
+           </tr>
+
+           <tr>
+               <td>{{ response.author }}</td>
+               <td>{{ response.text }}</td>
+               <td>{{ response.article }}</td>
+               <td>{{ response.category_type }}</td>
+           </tr>
+
+       </table>
+
+   {% else %}
+       <h2>Откликов нет!</h2>
+   {% endif %}
+
+{% endblock content %}
